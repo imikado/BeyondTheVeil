@@ -30,18 +30,22 @@ class Project
         $this->tRoom[$this->sCurrentRoom]['backLink']=$sRoom_;
     }
 
-    public function buildSvg($tRoom_)
+    public function buildSvg($sRoom, $tRoom_)
     {
-        $sSvg=null;
-        $sSvg.='<svg id="roomSvg"  width="600" height="400" >';
+        $r="\n";
+
+        $sSvg=$r;
+        $sSvg.='<svg id="'.$sRoom.'Svg"  width="600" height="400" >'.$r;
+
+        $sSvg.='<style>.clickable { cursor: pointer; }</style>'.$r;
 
         if (isset($tRoom_['tRectArea'])) {
             foreach ($tRoom_['tRectArea'] as $tArea) {
-                $sSvg.='<rect x="'.$tArea['x'].'" y="'.$tArea['y'].'" width="'.$tArea['width'].'" height="'.$tArea['height'].'" onclick="AAA" opacity="0" style="fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />';
+                $sSvg.='<rect class="clickable" x="'.$tArea['x'].'" y="'.$tArea['y'].'" width="'.$tArea['width'].'" height="'.$tArea['height'].'" opacity="0" style="cursor:hand;fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />'.$r;
             }
         }
 
-        $sSvg.='</svg>';
+        $sSvg.='</svg>'.$r;
 
         return $sSvg;
     }
@@ -62,7 +66,7 @@ class Project
         $sGameScript=null;
 
         foreach ($this->tRoom as $sRoom => $tRoomDetail) {
-            $sGameHtml.=$this->buildSvg($tRoomDetail);
+            $sGameHtml.=$this->buildSvg($sRoom, $tRoomDetail);
 
             $sGameScript.=$this->buildScript($sRoom, $tRoomDetail);
         }
@@ -152,6 +156,10 @@ class Project
 							if(a){
 								console.log(\'backgoud:\'+tRoom[id_]);
 								a.style.background="url(\'"+tRoom[id_]+"\')";
+
+								//resetAllSvg();
+
+								showObject(id_+\'Svg\');
 							}
 						}
 
@@ -159,6 +167,19 @@ class Project
 							return document.getElementById(id_);
 						}
 
+						function hideObject(sId){
+							var b=getById(sId);
+							if(b){
+								b.style.display=\'none\';
+							}
+				    }
+
+				    function showObject(sId){
+							var b=getById(sId);
+							if(b){
+								b.style.display=\'block\';
+							}
+				    }
 
 
 						</script>
