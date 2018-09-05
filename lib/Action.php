@@ -10,7 +10,7 @@ class Action
         $this->sParam=$sParam_;
     }
 
-    public function getType()
+    public function getAction()
     {
         return $this->sType;
     }
