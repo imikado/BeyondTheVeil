@@ -1,0 +1,98 @@
+[
+
+		{
+			"id":"front",
+			"src":"css/img/room.svg.png",
+			"tRectArea":[
+				{"x":175, "y":20, "width":252, "height":115, "action":{"funct":"loadRoom", "room":"front-miroir"}},
+				{"x":160, "y":239, "width":132, "height":22, "action":{"funct":"loadRoom", "room":"front-tiroir-gauche"}},
+				{"x":313, "y":239, "width":132, "height":22, "action":{"funct":"loadRoom", "room":"front-tiroir-droite"}}
+
+
+			],
+			"leftLinkTo":"left",
+			"rightLinkTo":"right"
+
+		},
+
+					{
+						"id":"front-miroir",
+						"src":"css/img/room-zoom-miroir.svg.png",
+						"backLinkTo":"front"
+					},
+
+					{
+						"id":"front-tiroir-gauche",
+						"src":"css/img/room-zoom-tiroirGauche.svg.png",
+						"backLinkTo":"front"
+					},
+
+					{
+						"id":"front-tiroir-droite",
+						"src":"css/img/room-zoom-tiroirDroite.svg.png",
+						"backLinkTo":"front"
+					},
+
+		{
+			"id":"left",
+			"src":"css/img/room-left.svg.png",
+			"tRectArea":[
+				{"x":179, "y":43, "width":112, "height":280, "action":{"funct":"loadRoom", "room":"left-zoom-porteGauche"}},
+				{"x":312, "y":43, "width":112, "height":280, "action":{"funct":"loadRoom", "room":"left-zoom-porteDroite"}}
+			],
+			"leftLinkTo":"back",
+			"rightLinkTo":"front"
+
+		},
+
+					{
+						"id":"left-zoom-porteGauche",
+						"src":"css/img/room-left-zoom-porteGauche.svg.png",
+						"backLinkTo":"left"
+					},
+					{
+						"id":"left-zoom-porteDroite",
+						"src":"css/img/room-left-zoom-porteDroite.svg.png",
+						"backLinkTo":"left"
+					},
+
+
+		{
+			"id":"right",
+			"src":"css/img/room-right.svg.png",
+			"tRectArea":[
+				{"x":162, "y":227, "width":208, "height":60, "action":{"funct":"loadRoom", "room":"right-zoom-cheminee"}}
+			],
+			"leftLinkTo":"front",
+			"rightLinkTo":"back"
+
+		},
+
+
+					{
+						"id":"right-zoom-cheminee",
+						"src":"css/img/room-right-zoom-cheminee.svg.png",
+						"backLinkTo":"right"
+					},
+
+
+		{
+			"id":"back",
+			"src":"css/img/room-back.svg.png",
+			"tRectArea":[
+				{"x":437, "y":69, "width":50, "height":53, "action":{"funct":"digicode","code":"496", "linkBack":"back", "roomIfSuccess":"back-end"}}
+			],
+			"leftLinkTo":"right",
+			"rightLinkTo":"left"
+
+		},
+
+		{
+			"id":"back-end",
+			"src":"css/img/room-back-end.svg.png"
+
+		}
+
+
+
+	]
