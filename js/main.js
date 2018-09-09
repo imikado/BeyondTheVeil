@@ -21,13 +21,32 @@ request.onload = function() {
 
 function process(tData_){
 
+	console.log('process');
+
 	for(sId in tData_){
 
-		var detailRoom=tData_[sId];
-		tRoom[detailRoom.id]=detailRoom.src;
-		tSvg.push(detailRoom.id+'Svg');
+		if(tData_[sId].type=='intro'){
+			var detailIntro=tData_[sId];
 
-		tORoom[detailRoom.id]=detailRoom;
+			var oIntro=getById('intro');
+			oIntro.innerHTML=detailIntro.text.join('');
+
+			oIntro.style.background=detailIntro.background;
+
+			oIntro.style.width=detailIntro.width;
+			oIntro.style.height=detailIntro.height;
+
+
+			console.log('intro');
+		}else{
+			var detailRoom=tData_[sId];
+			tRoom[detailRoom.id]=detailRoom.src;
+			tSvg.push(detailRoom.id+'Svg');
+
+			tORoom[detailRoom.id]=detailRoom;
+		}
+
+
 
 	}
 }
@@ -81,38 +100,21 @@ function digicode(code,linkBack,roomToGo){
 
 function digicodePress(key){
 
-	console.log('key:'+key);
-
 		if(key=='VAL'){
-			console.log('VAL');
-
 			if(digicodeValue==digicodePassword){
-
-
 				loadRoom(digicodeRoomToGo);
-
-
 			}else{
-
 				digicodeValue='';
-
 			}
 
-
-
 		}else if(key=='DEL'){
-			console.log('DEL');
 			digicodeValue=digicodeValue.substring(0, (digicodeValue.length-1) );
 		}else{
-			console.log('ELSE');
 			digicodeValue=digicodeValue+''+key;
-
-			console.log(digicodeValue);
 		}
 
 		var a=getById('myCodeTxt');
 		if(a){
-		console.log('inner');
 			a.innerHTML=digicodeValue;
 		}
 
@@ -153,10 +155,15 @@ function showObject(sId){
 
 function startGame(){
 	hideObject('intro');
-	
+
+	loadRoom("front");
 	showObject('game');
 }
 
+function startPage(){
+
+}
+
 window.onload=function(){
-	loadRoom("front");
+	startPage();
 }

@@ -22,18 +22,13 @@ color:#ddd;
 #intro{
 	margin:auto;
 	display:block;
-	
+
 	padding:20px;
-	
-	width:500px;
-	height:500px;
-	
-	background:url('img/intro.svg.png') no-repeat bottom left #1a1a1a;
-	
-	border:10px solid gray;	
-	
+
+	border:10px solid gray;
+
 	color:#fff;
-	
+
 	cursor:hand;
 }
 

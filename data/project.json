@@ -1,4 +1,18 @@
 [
+		{
+			"type":"intro",
+			"text":[
+			"<p>Lors d'une soir&eacute;e organis&eacute;e dans le petit Hotel MILTON,</p>",
+			"<p>Mme Heineger s'est aper&ccedil;u qu'on lui avait derob&eacute; son colier...</p>",
+			"<p>Immediatement, la direction a cloture l'Hotel afin de le retrouver</p>",
+			"<p>Tous les invites de ce soir dorment dans cet Hotel, le directeur vous a design&eacute; pour le retrouver ainsi que son voleur</p>"
+
+		],
+			"background":"url('css/img/hotelIntro.svg.png') no-repeat bottom left #000",
+			"width":"560px",
+			"height":"560px"
+		},
+
 
 		{
 			"id":"front",
