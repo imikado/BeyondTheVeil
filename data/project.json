@@ -16,16 +16,13 @@
 
 		{
 			"id":"front",
-			"src":"css/img/room.svg.png",
+			"src":"css/img/salleSejour.svg.png",
 			"tRectArea":[
-				{"x":175, "y":20, "width":252, "height":115, "action":{"funct":"loadRoom", "room":"front-miroir"}},
-				{"x":160, "y":239, "width":132, "height":22, "action":{"funct":"loadRoom", "room":"front-tiroir-gauche"}},
-				{"x":313, "y":239, "width":132, "height":22, "action":{"funct":"loadRoom", "room":"front-tiroir-droite"}}
+					{"x":400, "y":120, "width":20, "height":80, "action":{"funct":"loadRoom", "room":"comptoirAccueil"}},
 
+					{"x":250, "y":345, "width":240, "height":80, "action":{"funct":"modalMessage", "message":"Test message"}}
 
-			],
-			"leftLinkTo":"left",
-			"rightLinkTo":"right"
+			]
 
 		},
 
@@ -46,6 +43,19 @@
 						"src":"css/img/room-zoom-tiroirDroite.svg.png",
 						"backLinkTo":"front"
 					},
+
+
+		{
+			"id":"comptoirAccueil",
+			"src":"css/img/comptoirAccueil.svg.png",
+			"tRectArea":[
+
+
+			]
+
+		},
+
+
 
 		{
 			"id":"left",

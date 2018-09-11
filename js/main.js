@@ -65,10 +65,18 @@ function getHtmlItem(oRoom_){
 			if(oReactArea.action.funct=='loadRoom'){
 				sAction="loadRoom('"+oReactArea.action.room+"')";
 			}else if(oReactArea.action.funct=='digicode'){
-                sAction="digicode('"+oReactArea.action.code+"','"+oReactArea.action.linkBack+"','"+oReactArea.action.roomIfSuccess+"')";
+				sAction="digicode('"+oReactArea.action.code+"','"+oReactArea.action.linkBack+"','"+oReactArea.action.roomIfSuccess+"')";
+			}else if(oReactArea.action.funct=='modalMessage'){
+				sAction="modalMessage('"+oReactArea.action.message+"')";
 			}
 
-			sHtml+='<rect class="clickable" onclick="'+sAction+'" x="'+oReactArea.x+'" y="'+oReactArea.y+'" width="'+oReactArea.width+'" height="'+oReactArea.height+'" opacity="0" style="cursor:hand;fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />';
+			sHtml+='<rect class="clickable" ';
+       if(bDebug){
+               sHtml+='opacity="0.5" ';
+       }else{
+               sHtml+='opacity="0" ';
+       }
+       sHtml+=' onclick="'+sAction+'" x="'+oReactArea.x+'" y="'+oReactArea.y+'" width="'+oReactArea.width+'" height="'+oReactArea.height+'" opacity="0" style="cursor:hand;fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />';
 		}
 	}
 	if(oRoom_.leftLinkTo && oRoom_.rightLinkTo){
@@ -129,8 +137,6 @@ function digicodePress(key){
 function loadRoom(id_){
 	var a=getById('game');
 	if(a){
-        
-        modalMessage('load room'+id_);
 
 		detailRoom=tORoom[id_];
 		a.innerHTML=getHtmlSvg(detailRoom.id+'Svg',getHtmlItem(detailRoom));
