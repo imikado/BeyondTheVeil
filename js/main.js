@@ -2,6 +2,10 @@ var tRoom=Array();
 var tSvg=Array();
 var tORoom=Array();
 
+var tImage=Array();
+
+var tInventory=Array();
+
 var digicodeValue='';
 var digicodePassword='';
 var digicodeRoomToGo='';
@@ -55,20 +59,51 @@ function process(tData_){
 
 	}
 }
+
+function addInventory(oItem){
+	console.log("addInventory");
+	console.log(oItem);
+	oItem.setAttribute('opacity',0);
+
+	tInventory.push({"id":oItem.getAttribute('id') });
+
+	refreshInventory();
+}
+
+function refreshInventory(){
+	var a=getById('inventory');
+	if(a){
+		var sHtml='<table><tr>';
+		for(var iInv in tInventory){
+			sHtml+='<td><img src="'+tImage[ tInventory[iInv].id ]+'" /></td>'
+		}
+		sHtml+='</tr></table>';
+
+		a.innerHTML=sHtml;
+	}
+}
+
+function getAction(oObject_){
+	var sAction='';
+	if(oObject_.action.funct=='loadRoom'){
+		sAction="loadRoom('"+oObject_.action.room+"')";
+	}else if(oObject_.action.funct=='digicode'){
+		sAction="digicode('"+oObject_.action.code+"','"+oObject_.action.linkBack+"','"+oObject_.action.roomIfSuccess+"')";
+	}else if(oObject_.action.funct=='modalMessage'){
+		sAction="modalMessage('"+oObject_.action.message+"')";
+	}else if(oObject_.action.funct=='addInventory'){
+		sAction="addInventory(this)";
+	}
+	return sAction;
+}
+
 function getHtmlItem(oRoom_){
 	var sHtml='';
 	if(oRoom_.tRectArea){
 		for(var iReactArea in oRoom_.tRectArea){
 			var oReactArea=oRoom_.tRectArea[iReactArea];
 
-			var sAction='';
-			if(oReactArea.action.funct=='loadRoom'){
-				sAction="loadRoom('"+oReactArea.action.room+"')";
-			}else if(oReactArea.action.funct=='digicode'){
-				sAction="digicode('"+oReactArea.action.code+"','"+oReactArea.action.linkBack+"','"+oReactArea.action.roomIfSuccess+"')";
-			}else if(oReactArea.action.funct=='modalMessage'){
-				sAction="modalMessage('"+oReactArea.action.message+"')";
-			}
+			var sAction=getAction(oReactArea);
 
 			sHtml+='<rect class="clickable" ';
        if(bDebug){
@@ -76,9 +111,25 @@ function getHtmlItem(oRoom_){
        }else{
                sHtml+='opacity="0" ';
        }
-       sHtml+=' onclick="'+sAction+'" x="'+oReactArea.x+'" y="'+oReactArea.y+'" width="'+oReactArea.width+'" height="'+oReactArea.height+'" opacity="0" style="cursor:hand;fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />';
+       sHtml+=' onclick="'+sAction+'" x="'+oReactArea.x+'" y="'+oReactArea.y+'" width="'+oReactArea.width+'" height="'+oReactArea.height+'" style="fill:rgb(0,0,255);" />';
 		}
 	}
+
+	if(oRoom_.tImage){
+		for(var iImage in oRoom_.tImage){
+			var oImage=oRoom_.tImage[iImage];
+
+			var sAction=getAction(oImage);
+
+			sHtml+='<image class="clickable" id="'+oImage.id+'"';
+
+			 sHtml+=' onclick="'+sAction+'" x="'+oImage.x+'" y="'+oImage.y+'"   opacity="1" xlink:href="'+oImage.src+'" />';
+
+			 tImage[oImage.id]=oImage.src;
+
+		}
+	}
+
 	if(oRoom_.leftLinkTo && oRoom_.rightLinkTo){
 		sHtml+=getById('myArrows').innerHTML.replace('MYLINKLEFT',oRoom_.leftLinkTo).replace('MYLINKRIGHT',oRoom_.rightLinkTo);
 	}
@@ -90,7 +141,7 @@ function getHtmlItem(oRoom_){
 	return sHtml;
 }
 function getHtmlSvg(id_,content_){
-	return '<svg id="'+id_+'"  width="600" height="400" ><style>.clickable { cursor: pointer; }</style>'+content_+'</svg>';
+	return '<svg id="'+id_+'"  width="600" height="400" xmlns:xlink= "http://www.w3.org/1999/xlink"><style>.clickable { cursor: pointer; }</style>'+content_+'</svg>';
 }
 
 

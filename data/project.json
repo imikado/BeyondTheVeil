@@ -18,9 +18,11 @@
 			"id":"front",
 			"src":"css/img/salleSejour.svg.png",
 			"tRectArea":[
-					{"x":400, "y":120, "width":20, "height":80, "action":{"funct":"loadRoom", "room":"comptoirAccueil"}},
+					{"x":400, "y":120, "width":20, "height":80, "action":{"funct":"loadRoom", "room":"comptoirAccueil"}}
 
-					{"x":250, "y":345, "width":240, "height":80, "action":{"funct":"modalMessage", "message":"Test message"}}
+			],
+			"tImage":[
+				{"x":350, "y":365,  "src":"css/img/key.png", "id":"keySalleSejour", "action":{"funct":"addInventory"}}
 
 			]
 

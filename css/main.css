@@ -50,6 +50,20 @@ background:#fff;
 border:10px solid gray;
 }
 
+#inventory{
+	margin:auto;
+
+	margin-top:20px;
+
+	width:600px;
+	height:30px;
+
+	background:#ddd;
+
+	border:10px solid gray;
+
+}
+
 #bar{
 
 display:block;
